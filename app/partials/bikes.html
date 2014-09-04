@@ -1,0 +1,39 @@
+<form ng-submit="saveBike()" class="form-inline bike-form" role="form">
+  <div class="form-group">
+    <label class="sr-only" for="bikeName">Name</label>
+    <input ng-model="newBike.name" type="text" class="form-control" id="bikeName" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="phoneNumer">Color</label>
+    <input ng-model="newBike.color" type="text" class="form-control" id="bikeColor" placeholder="Color">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="sizeOfbike">Size</label>
+    <input ng-model="newBike.size" type="text" class="form-control" id="sizeOfBike" placeholder="Size of bike">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add bike</button>
+</form>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Verified?</th>
+      <th>Info</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tr ng-repeat="bike in bikes | orderByPriority">
+    <td><input ng-model="bike.verified" ng-change="bike.$save(user.$id)" type="checkbox"></td>
+    <td>
+      <div><strong>{{ bike.name }} ({{ bike.size }} )</strong></div>
+      <div>{{ bike.color }}</div>
+      <div>
+        <!-- TODO: Add date created -->
+      </div>
+    </td>
+    <td>
+      <button ng-click="bikes.$remove(bike.$id)" type="submit" class="btn btn-danger">Remove</button>
+    </td>
+  </tr>
+</table>
